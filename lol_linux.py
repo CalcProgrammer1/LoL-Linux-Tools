@@ -211,7 +211,8 @@ def extract(base_path, needle):
             raf_archives[i.version] = raf.Raf(filearchives[i.version])
             raf_archives[i.version].read()
         f = raf_archives[i.version].find_file(i.path)
-        raf_archives[i.version].data_file.extract_file(f.offset, f.size, os.path.join(base_path, i.path))
+        if f:
+            raf_archives[i.version].data_file.extract_file(f.offset, f.size, os.path.join(base_path, i.path))
 
     return 0
 
